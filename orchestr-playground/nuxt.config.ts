@@ -6,9 +6,17 @@ const rcWithoutUi = {
   ...laioutrrc,
 
   laioutr: {
+    // Disable project secret validation for local development
     projectSecretKey: false,
   },
-  apps: laioutrrc.apps.filter((app) => app.name !== "@laioutr-app/ui"),
+  apps: laioutrrc.apps.filter(
+    (app) =>
+      ![
+        "@laioutr-app/ui",
+        "@laioutr-app/shopify",
+        "@laioutr-app/adobe-commerce",
+      ].includes(app.name)
+  ),
 };
 
 export default defineNuxtConfig({
